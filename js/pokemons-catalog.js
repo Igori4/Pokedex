@@ -66,7 +66,10 @@ export default class PokemonCatalog{
   _addInfo(data) {
     let pokemon = Object.entries(data)
     let info =  pokemon.filter(el => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> gh-pages
       if(el[0] !== 'name' &&
         el[0] !== 'image' &&
         el[0] !== 'id' ) {
@@ -136,3 +139,8 @@ export default class PokemonCatalog{
     `
   };
 };
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> gh-pages
