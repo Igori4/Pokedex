@@ -8,7 +8,6 @@ export default class PokemonCatalog{
     this._pageSize = 12;
     this._showPokemons(this._pageSize);
     this._loadMorePokemons('.load-pokemons');
-
   };
 
   _infoCard(){
