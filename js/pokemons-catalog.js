@@ -1,5 +1,5 @@
 'use strict'
-import PokemonService from './components/pokemon-service.js';
+import PokemonService from './pokemon-service.js';
 
 export default class PokemonCatalog{
   constructor({element}) {
@@ -29,9 +29,11 @@ export default class PokemonCatalog{
   _showInfo(elem) {
     this._element.addEventListener('click', (event) => {
       let target = event.target.closest(elem)
+
       if(!target) {
         return;
       };
+      
       this._pokeApi.then(response => {
         response.map(el => {
           if(el.id == target.dataset.id) {

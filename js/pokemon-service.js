@@ -6,23 +6,21 @@ const PokemonService = {
 
 async function getPokemonsFromApi(pageSize) {
   let pokemons = []
-
-    for( let i = pageSize - 11; i <= pageSize; i++) {
-      let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-      let pokemonList = await  response.json();
-      pokemons.push(pokemonList)
-   }
+  for( let i = pageSize - 11; i <= pageSize; i++) {
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    let pokemonList = await  response.json();
+    pokemons.push(pokemonList)
+   };
 
   return pokemons;
 };
 
 function getStats(stats) {
-    stats.map(el => {
-        let statName = el.stat.name;
-        this[`${statName}`] = el.base_stat;
-    })
+  stats.map(el => {
+    let statName = el.stat.name;
+    this[`${statName}`] = el.base_stat;
+  })
 }
-
 
  async function getMainInfo(pageSize) {
   let pokemons = await getPokemonsFromApi(pageSize)
@@ -43,6 +41,4 @@ function getStats(stats) {
   return result;
 };
 
-
 export default PokemonService;
-

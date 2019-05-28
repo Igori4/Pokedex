@@ -1,4 +1,4 @@
-import PokemonCatalog from './catalog/pokemons-catalog.js'
+import PokemonCatalog from './pokemons-catalog.js'
 
 let preloader = document.querySelector('#preloader');
 window.addEventListener('load', () => {
