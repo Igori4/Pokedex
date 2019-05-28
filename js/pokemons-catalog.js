@@ -44,6 +44,8 @@ export default class PokemonCatalog{
   };
 
   _loadMorePokemons(elem) {
+    const maxLoadPokemons = 900;
+    const amountNextPokemons = 12;
     this._element.addEventListener('click', (event) => {
       let target = event.target.closest(elem)
 
@@ -51,11 +53,11 @@ export default class PokemonCatalog{
         return;
       };
 
-      if(this._pageSize > 900) {
-        this._pageSize = 12;
+      if(this._pageSize > maxLoadPokemons) {
+        this._pageSize = amountNextPokemons;
       };
       this._element.innerHTML = null;
-      this._pageSize += 12;
+      this._pageSize += amountNextPokemons;
       let preloader = document.querySelector('#preloader');
       preloader.style.display = 'block';
 
@@ -66,10 +68,6 @@ export default class PokemonCatalog{
   _addInfo(data) {
     let pokemon = Object.entries(data)
     let info =  pokemon.filter(el => {
-<<<<<<< HEAD
-
-=======
->>>>>>> gh-pages
       if(el[0] !== 'name' &&
         el[0] !== 'image' &&
         el[0] !== 'id' ) {
@@ -139,8 +137,3 @@ export default class PokemonCatalog{
     `
   };
 };
-<<<<<<< HEAD
-=======
-
-
->>>>>>> gh-pages

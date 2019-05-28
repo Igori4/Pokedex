@@ -7,9 +7,4 @@ window.addEventListener('load', () => {
 
 let pokemonCatalog = new PokemonCatalog({
     element: document.querySelector('[data-page-container]')
-<<<<<<< HEAD
-}) 
-=======
-})
-
->>>>>>> gh-pages
+});
