@@ -20,9 +20,7 @@ export default class PokemonCatalog{
     this._pokeApi = PokemonService.getMainInfo(diapason)
     this._pokeApi.then(response => {
     this._render(response)
-    }).then(() => {
-      preloader.style.display = 'none';
-    });
+    })
   };
 
   _showInfo(elem) {
@@ -77,6 +75,17 @@ export default class PokemonCatalog{
     this._renderCardInfo(data, info)
   };
 
+  _hidePreloader() {
+    let add = [...document.querySelectorAll('[data-element="pokemon-image"]')];
+    add.map((el, i) => {
+      if( i === 11) {
+        el.onload = () => {
+          preloader.style.display = 'none'
+      }
+      }
+    })
+  }
+
   _renderCardInfo(data, info) {
     document.querySelector('[data-component="info-card"]').innerHTML = `
     <div class="more-info" data-element="more-info">
@@ -111,7 +120,7 @@ export default class PokemonCatalog{
          class="card"
          data-id="${pokemon.id}"
          data-element-card> 
-          <img src="${pokemon.image}" alt="pokemon-img">
+          <img src="${pokemon.image}" alt="pokemon-img" data-element="pokemon-image">
           <div class="description">
           <p>${pokemon.name}</p>
           <div class="some-feature">
@@ -135,5 +144,6 @@ export default class PokemonCatalog{
     <div class="info-card" data-component="info-card">
     </div>
     `
+    this._hidePreloader();
   };
 };
