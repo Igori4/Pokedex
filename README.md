@@ -1,2 +1,3 @@
 # Pokemons 
-- [ Pokedex gh-pages](https://igori4.github.io/Pokedex/)
+
+- [ Demo link](https://igori4.github.io/Pokedex/);
