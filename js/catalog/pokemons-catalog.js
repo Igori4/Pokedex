@@ -1,22 +1,30 @@
 'use strict'
-import PokemonService from './components/pocemon-service.js';
+import PokemonService from './components/pokemon-service.js';
 
 export default class PokemonCatalog{
   constructor({element}) {
     this._element = element;
     this._showInfo('.card');
-    this._diapason = 12;
-    this._showPokemons(this._diapason);
+    this._pageSize = 12;
+    this._showPokemons(this._pageSize);
     this._loadMorePokemons('.load-pokemons');
 
+  };
+
+  _infoCard(){
+    this._infoCard = new InfoCard({
+      element: document.querySelector('[data-component="info-card"]')
+    });
   };
 
   _showPokemons(diapason) {
     this._pokeApi = PokemonService.getMainInfo(diapason)
     this._pokeApi.then(response => {
     this._render(response)
+    }).then(() => {
+      preloader.style.display = 'none';
     });
-  }
+  };
 
   _showInfo(elem) {
     this._element.addEventListener('click', (event) => {
@@ -42,15 +50,17 @@ export default class PokemonCatalog{
         return;
       };
 
-      if(this._diapason > 900) {
-        this._diapason = 12;
-      }
+      if(this._pageSize > 900) {
+        this._pageSize = 12;
+      };
       this._element.innerHTML = null;
-      this._diapason += 12;
-      console.log(this._diapason)
-      this._showPokemons(this._diapason);
-    })
-  }
+      this._pageSize += 12;
+      let preloader = document.querySelector('#preloader');
+      preloader.style.display = 'block';
+
+      this._showPokemons(this._pageSize);
+    });
+  };
 
   _addInfo(data) {
     let pokemon = Object.entries(data)
@@ -89,13 +99,6 @@ export default class PokemonCatalog{
     `
   };
 
-  _infoCard(){
-    this._infoCard = new InfoCard({
-      element: document.querySelector('[data-component="info-card"]')
-    });
-    
-  };
-
   _render(date) {
     this._element.innerHTML += `
     <div class="pokemon-cards" data-element="pokemon-cards">
@@ -109,7 +112,7 @@ export default class PokemonCatalog{
           <div class="description">
           <p>${pokemon.name}</p>
           <div class="some-feature">
-           ${pokemon.Type.map(el => {
+           ${pokemon.type.map(el => {
              return `
              <button data-element="${el.type.name}">
              ${el.type.name}
@@ -123,7 +126,7 @@ export default class PokemonCatalog{
       <button 
       class="load-pokemons"
        data-element="load-more">
-       Load More
+       Load more
        </button>
     </div>
     <div class="info-card" data-component="info-card">

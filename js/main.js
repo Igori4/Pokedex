@@ -1,6 +1,11 @@
-import PokemonCatalog from './catalog/pocemons-catalog.js'
+import PokemonCatalog from './catalog/pokemons-catalog.js'
+
+let preloader = document.querySelector('#preloader');
+window.addEventListener('load', () => {
+    preloader.style.display = 'none';
+})
 
 let pokemonCatalog = new PokemonCatalog({
     element: document.querySelector('[data-page-container]')
-}) 
+})
 
