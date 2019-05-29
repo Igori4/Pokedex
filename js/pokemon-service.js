@@ -6,9 +6,11 @@ const PokemonService = {
 
 async function getPokemonsFromApi(pageSize) {
   let pokemons = []
-  for( let i = pageSize - 11; i <= pageSize; i++) {
+  const idNextPokemons = 11;
+  
+  for( let i = pageSize - idNextPokemons; i <= pageSize; i++) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    let pokemonList = await  response.json();
+    let pokemonList = await response.json();
     pokemons.push(pokemonList)
    };
 
@@ -16,9 +18,9 @@ async function getPokemonsFromApi(pageSize) {
 };
 
 function getStats(stats) {
-  stats.map(el => {
-    let statName = el.stat.name;
-    this[`${statName}`] = el.base_stat;
+  stats.map(info => {
+    let statName = info.stat.name;
+    this[statName] = info.base_stat;
   })
 }
 
@@ -26,17 +28,19 @@ function getStats(stats) {
   let pokemons = await getPokemonsFromApi(pageSize)
   let result = [];
 
-  pokemons.map(pok => {
-   let info = {}
-    info.name = pok.name;
-    info.id = pok.id;
-    info.image = pok.sprites.front_default;
-    info.type = pok.types;
-    info['total moves'] = pok.moves.length;
-    info.weight = pok.weight;
-    getStats.call(info, pok.stats)
-    result.push(info)  
-  });
+    pokemons.forEach( pok => {
+      let info = {}
+       info.name = pok.name;
+       info.id = pok.id;
+       info.image = pok.sprites.front_default;
+       info.type = pok.types;
+       info['total moves'] = pok.moves.length;
+       info.weight = pok.weight;
+       getStats.call(info, pok.stats)
+       result.push(info)  
+     })
+
+  
 
   return result;
 };

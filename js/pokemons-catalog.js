@@ -16,8 +16,8 @@ export default class PokemonCatalog{
     });
   };
 
-  _showPokemons(diapason) {
-    this._pokeApi = PokemonService.getMainInfo(diapason)
+  _showPokemons(pageSize) {
+    this._pokeApi = PokemonService.getMainInfo(pageSize)
     this._pokeApi.then(response => {
     this._render(response)
     })
@@ -76,9 +76,10 @@ export default class PokemonCatalog{
   };
 
   _hidePreloader() {
+    const lastPokemonImg = 11;
     let add = [...document.querySelectorAll('[data-element="pokemon-image"]')];
     add.map((el, i) => {
-      if( i === 11) {
+      if( i === lastPokemonImg) {
         el.onload = () => {
           preloader.style.display = 'none'
       }
