@@ -7,13 +7,24 @@ const PokemonService = {
 async function getPokemonsFromApi(pageSize) {
   let pokemons = []
   const idNextPokemons = 11;
+  let apiCalls = [];
   
   for( let i = pageSize - idNextPokemons; i <= pageSize; i++) {
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    let pokemonList = await response.json();
-    pokemons.push(pokemonList)
+    apiCalls.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+    .then( (response) => {
+    return  response.json()
+    }).then( data => {
+      pokemons.push(data)
+    })
+    ) 
+
    };
 
+
+  await Promise.all(
+    apiCalls
+  )
+    
   return pokemons;
 };
 
