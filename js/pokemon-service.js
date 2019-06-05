@@ -9,8 +9,14 @@ async function getPokemonsFromApi(pageSize) {
   for( let i = pageSize - 11; i <= pageSize; i++) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     let pokemonList = await  response.json();
+    console.log(pokemonList)
     pokemons.push(pokemonList)
    };
+
+
+   Promise.all(
+     pokemons
+   )
 
   return pokemons;
 };
