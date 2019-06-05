@@ -16,10 +16,8 @@ async function getPokemonsFromApi(pageSize) {
     }).then( data => {
       pokemons.push(data)
     })
-    ) 
-
+    ); 
    };
-
 
   await Promise.all(
     apiCalls
