@@ -3,12 +3,12 @@
 }
 
 body {
-    background: #090f29;
+    background: #949090ab;
     font-family: "Roboto", sans-serif;
 }
 
 .main {
-    padding: 30px 50px;
+    padding: 30px 10px;
 }
 
 .container-title {
@@ -16,7 +16,7 @@ body {
 }
 
 .container-title h1 {
-    color: #00ff45;
+    color: #fbfef3;
 }
 
 .pokemon-cards {
@@ -40,32 +40,34 @@ button {
     font-size: 22px;
     border-radius: 20px;
     font-weight: bold;
-    color: #261c77;
-    background: #6224d0;
+    color: #3879a0;
+    opacity: 0.8;
     box-shadow: 1px 1px 11px #009688;
 }
 
 .load-pokemons:hover {
-    color: #3879a0;
+    color: #bec7cc;
     opacity: 0.8;
+    background: #0c91e2;
 }
 
 .card {
     margin: 0 10px 20px;
     border-radius: 5px;
-    box-shadow: 0px 3px 6px 0px #0082ffb8;
+    box-shadow: 0px 3px 7px 3px #e3e3dfc2;;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #3879a0;
+    color: #c5c5c5;
     cursor: pointer;
     width: 120px;
-    background: #132b2e9c;
+    background: #1dbcce;
 }
 
 .card:hover {
     color: white;
-    opacity: 0.6;
+    background: #018190;
+    box-shadow: 0px 3px 7px 3px #ffffff;
 }
 
 .description {
@@ -92,8 +94,8 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #050650;
-    box-shadow: 1px 0px 20px 6px #59b13e;
+    background: #33ffeec7;
+    box-shadow: 1px 0px 20px 6px #fbfbfb;;
 }
 
 .more-info-image {
@@ -103,22 +105,26 @@ button {
 
 .card-name-id {
     font-weight: bold;
-    color: #2196F3;
-    text-shadow: 1px 1px 11px #890fee;
+    color: #f2f2f2;
+    text-shadow: 1px 1px 11px #0fc0ee;
+}
+
+.some-feature button {
+    box-shadow: 0px 0px 11px 0px #3038a9;
+    color: #ffffff;
 }
 
 table {
     width: 220px;
     margin: 10px 10px;
-    background: #0ff28b;
+    background: #b6bfbb;
     border-radius: 6px;
-    box-shadow: -4px -2px 16px 2px #00000042;
 }
 
 table tbody {
-    color: #3f3e3a;
+    color: #0c91e2;
     border-radius: 8px;
-    box-shadow: 1px 1px 15px 0px #9C27B0;
+    box-shadow: 1px 1px 15px 0px #e7fdff;
 }
 
 td {
@@ -178,13 +184,13 @@ td {
     top: 0;
     left: 0;
     position: fixed;
-    background: #000609b8;
+    background: #02abffb8;
 } 
 
 .spinner {
     width: 80px;
     height: 80px;
-    border-top: 3px solid #49f016;
+    border-top: 3px solid #f0e116;
     border-radius: 100%;
     position: absolute;
     top: 0;

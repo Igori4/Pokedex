@@ -5,8 +5,8 @@ export default class PokemonCatalog{
   constructor({element}) {
     this._element = element;
     this._showInfo('.card');
-    this._pageSize = 12;
-    this._showPokemons(this._pageSize);
+    this._amountOfPokemons = 12;
+    this._showPokemons(this._amountOfPokemons);
     this._loadMorePokemons('.load-pokemons');
   };
 
@@ -16,8 +16,8 @@ export default class PokemonCatalog{
     });
   };
 
-  _showPokemons(pageSize) {
-    this._pokeApi = PokemonService.getMainInfo(pageSize)
+  _showPokemons(amountOfPokemons) {
+    this._pokeApi = PokemonService.getMainInfo(amountOfPokemons)
     this._pokeApi.then(response => {
     this._render(response)
     })
@@ -51,15 +51,15 @@ export default class PokemonCatalog{
         return;
       };
 
-      if(this._pageSize > maxLoadPokemons) {
-        this._pageSize = amountNextPokemons;
+      if(this._amountOfPokemons > maxLoadPokemons) {
+        this._amountOfPokemons = amountNextPokemons;
       };
       this._element.innerHTML = null;
-      this._pageSize += amountNextPokemons;
+      this._amountOfPokemons += amountNextPokemons;
       let preloader = document.querySelector('#preloader');
       preloader.style.display = 'block';
 
-      this._showPokemons(this._pageSize);
+      this._showPokemons(this._amountOfPokemons);
     });
   };
 
