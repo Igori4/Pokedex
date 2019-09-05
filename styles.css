@@ -1,220 +1,224 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background: #949090ab;
-    font-family: "Roboto", sans-serif;
+  background: #949090ab;
+  font-family: "Roboto", sans-serif;
 }
 
 .main {
-    padding: 30px 10px;
+  padding: 30px 10px;
 }
 
 .container-title {
-    text-align: center;
+  text-align: center;
 }
 
 .container-title h1 {
-    color: #fbfef3;
+  color: #fbfef3;
 }
 
 .pokemon-cards {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    width: 570px;
-
-    animation: show 2s ease;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 570px;
+  animation: show 2s ease;
 }
 
 button {
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
 }
 
 .load-pokemons {
-    width: 100%;
-    height: 42px;
-    font-size: 22px;
-    border-radius: 20px;
-    font-weight: bold;
-    color: #3879a0;
-    opacity: 0.8;
-    box-shadow: 1px 1px 11px #009688;
+  width: 100%;
+  height: 42px;
+  font-size: 22px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #3879a0;
+  opacity: 0.8;
+  box-shadow: 1px 1px 11px #009688;
 }
 
 .load-pokemons:hover {
-    color: #bec7cc;
-    opacity: 0.8;
-    background: #0c91e2;
+  color: #bec7cc;
+  opacity: 0.8;
+  background: #0c91e2;
 }
 
 .card {
-    margin: 0 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0px 3px 7px 3px #e3e3dfc2;;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #c5c5c5;
-    cursor: pointer;
-    width: 120px;
-    background: #1dbcce;
+  margin: 20px 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 7px 3px #e3e3dfc2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c5c5c5;
+  cursor: pointer;
+  width: 120px;
+  background: #1dbcce;
 }
 
 .card:hover {
-    color: white;
-    background: #018190;
-    box-shadow: 0px 3px 7px 3px #ffffff;
+  color: white;
+  background: #018190;
+  box-shadow: 0px 3px 7px 3px #ffffff;
 }
 
 .description {
-    text-align: center;
-    margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .description p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .page-container {
-    display: flex;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }
 
 .info-card {
-    width: 50%;
-    display: flex;
+  display: flex;
+  animation: show 2s ease;
 }
 
 .more-info {
-    margin: 10px auto auto;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #33ffeec7;
-    box-shadow: 1px 0px 20px 6px #fbfbfb;;
+  margin: 10px auto auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #33ffeec7;
+  box-shadow: 1px 0px 20px 6px #fbfbfb;
 }
 
 .more-info-image {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .card-name-id {
-    font-weight: bold;
-    color: #f2f2f2;
-    text-shadow: 1px 1px 11px #0fc0ee;
+  font-weight: bold;
+  color: #f2f2f2;
+  text-shadow: 1px 1px 11px #0fc0ee;
 }
 
 .some-feature button {
-    box-shadow: 0px 0px 11px 0px #3038a9;
-    color: #ffffff;
+  box-shadow: 0px 0px 11px 0px #3038a9;
+  color: #ffffff;
 }
 
 table {
-    width: 220px;
-    margin: 10px 10px;
-    background: #b6bfbb;
-    border-radius: 6px;
+  width: 220px;
+  margin: 10px 10px;
+  background: #b6bfbb;
+  border-radius: 6px;
 }
 
 table tbody {
-    color: #0c91e2;
-    border-radius: 8px;
-    box-shadow: 1px 1px 15px 0px #e7fdff;
+  color: #0c91e2;
+  border-radius: 8px;
+  box-shadow: 1px 1px 15px 0px #e7fdff;
 }
 
 td {
-    text-align: center;
+  text-align: center;
 }
 
 [data-element="poison"] {
-    background-color: rgb(146, 74, 214);
+  background-color: rgb(146, 74, 214);
 }
 
 [data-element="grass"] {
-    background-color: rgb(46, 201, 46);
+  background-color: rgb(46, 201, 46);
 }
 
 [data-element="fire"] {
-    background-color: rgb(202, 106, 16);
+  background-color: rgb(202, 106, 16);
 }
 
 [data-element="flying"] {
-    background-color: rgb(46, 82, 201);
+  background-color: rgb(46, 82, 201);
 }
 
 [data-element="water"] {
-    background-color: rgb(46, 196, 201);
+  background-color: rgb(46, 196, 201);
 }
 
 [data-element="bug"] {
-    background-color: rgb(107, 72, 38);
-    color: white;
+  background-color: rgb(107, 72, 38);
+  color: white;
 }
 
 [data-element="normal"] {
-    background-color: rgb(247, 222, 3);
+  background-color: rgb(247, 222, 3);
 }
 
 [data-element="ground"] {
-    background-color: rgb(80, 79, 76);
-    color: white;
+  background-color: rgb(80, 79, 76);
+  color: white;
 }
 
 [data-element="electric"] {
-    background-color: rgb(153, 62, 9);
+  background-color: rgb(153, 62, 9);
 }
 
 [data-element="fairy"] {
-    background-color: rgb(16, 139, 47);
+  background-color: rgb(16, 139, 47);
 }
 
 [data-element="fighting"] {
-    background-color: rgb(139, 16, 16);
-    color: white;
+  background-color: rgb(139, 16, 16);
+  color: white;
 }
 
 #preloader {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: #02abffb8;
-} 
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: #02abffb8;
+}
 
 .spinner {
-    width: 80px;
-    height: 80px;
-    border-top: 3px solid #f0e116;
-    border-radius: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    z-index: 9999;
+  width: 80px;
+  height: 80px;
+  border-top: 3px solid #f0e116;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 9999;
 
-    animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
 }
 
 @keyframes spin {
-    from{
-        transform: rotate(0deg);
-    }to{
-        transform: rotate(365deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(365deg);
+  }
 }
 
 @keyframes show {
-    from{
-        opacity: 0.1;
-    }to{
-        opacity: 1;
-    }
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
 }
