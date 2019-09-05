@@ -1,89 +1,88 @@
-'use strict'
-import PokemonService from './pokemon-service.js';
+"use strict";
+import PokemonService from "./pokemon-service.js";
 
-export default class PokemonCatalog{
-  constructor({element}) {
+export default class PokemonCatalog {
+  constructor({ element }) {
     this._element = element;
-    this._showInfo('.card');
-    this._pageSize = 12;
-    this._showPokemons(this._pageSize);
-    this._loadMorePokemons('.load-pokemons');
-  };
+    this._showInfo(".card");
+    this._amountOfPokemons = 12;
+    this._showPokemons(this._amountOfPokemons);
+    this._loadMorePokemons(".load-pokemons");
+  }
 
-  _infoCard(){
+  _infoCard() {
     this._infoCard = new InfoCard({
       element: document.querySelector('[data-component="info-card"]')
     });
-  };
+  }
 
-  _showPokemons(diapason) {
-    this._pokeApi = PokemonService.getMainInfo(diapason)
+  _showPokemons(amountOfPokemons) {
+    this._pokeApi = PokemonService.getMainInfo(amountOfPokemons);
     this._pokeApi.then(response => {
-    this._render(response)
-    })
-  };
+      this._render(response);
+    });
+  }
 
   _showInfo(elem) {
-    this._element.addEventListener('click', (event) => {
-      let target = event.target.closest(elem)
+    this._element.addEventListener("click", event => {
+      let target = event.target.closest(elem);
 
-      if(!target) {
+      if (!target) {
         return;
-      };
-      
+      }
+
       this._pokeApi.then(response => {
         response.map(el => {
-          if(el.id == target.dataset.id) {
-            this._addInfo(el)
-          };
+          if (el.id == target.dataset.id) {
+            this._addInfo(el);
+          }
         });
       });
     });
-  };
+  }
 
   _loadMorePokemons(elem) {
     const maxLoadPokemons = 900;
     const amountNextPokemons = 12;
-    this._element.addEventListener('click', (event) => {
-      let target = event.target.closest(elem)
+    this._element.addEventListener("click", event => {
+      let target = event.target.closest(elem);
 
-      if(!target) {
+      if (!target) {
         return;
-      };
+      }
 
-      if(this._pageSize > maxLoadPokemons) {
-        this._pageSize = amountNextPokemons;
-      };
+      if (this._amountOfPokemons > maxLoadPokemons) {
+        this._amountOfPokemons = amountNextPokemons;
+      }
       this._element.innerHTML = null;
-      this._pageSize += amountNextPokemons;
-      let preloader = document.querySelector('#preloader');
-      preloader.style.display = 'block';
+      this._amountOfPokemons += amountNextPokemons;
+      let preloader = document.querySelector("#preloader");
+      preloader.style.display = "block";
 
-      this._showPokemons(this._pageSize);
+      this._showPokemons(this._amountOfPokemons);
     });
-  };
+  }
 
   _addInfo(data) {
-    let pokemon = Object.entries(data)
-    let info =  pokemon.filter(el => {
-      if(el[0] !== 'name' &&
-        el[0] !== 'image' &&
-        el[0] !== 'id' ) {
-        return el
-      };
+    let pokemon = Object.entries(data);
+    let info = pokemon.filter(el => {
+      if (el[0] !== "name" && el[0] !== "image" && el[0] !== "id") {
+        return el;
+      }
     });
-    this._renderCardInfo(data, info)
-  };
+    this._renderCardInfo(data, info);
+  }
 
   _hidePreloader() {
+    const lastPokemonImg = 11;
     let add = [...document.querySelectorAll('[data-element="pokemon-image"]')];
     add.map((el, i) => {
-      if( i === 11) {
+      if (i === lastPokemonImg) {
         el.onload = () => {
-          preloader.style.display = 'none'
+          preloader.style.display = "none";
+        };
       }
-      }
-    })
+    });
   }
 
   _renderCardInfo(data, info) {
@@ -92,49 +91,59 @@ export default class PokemonCatalog{
       <img src="${data.image}" alt="image" class="more-info-image">
       <p class="card-name-id">${data.name}#0${data.id}</p>
       <table class="table-info">
-        ${info.map(el => {
-          if( Array.isArray(el[1])) {
-            return `
+        ${info
+          .map(el => {
+            if (Array.isArray(el[1])) {
+              return `
             <tr>
-            <td>${el[0]}</td><td>${el[1].map(features => features.type.name ).join(', ')}</td>
+            <td>${el[0]}</td><td>${el[1]
+                .map(features => features.type.name)
+                .join(", ")}</td>
             </tr>
-            `
-          };
-         return `
+            `;
+            }
+            return `
           <tr>
           <td>${el[0]}</td><td>${el[1]}</td>
           </tr>
-          `
-        }).join('')}
+          `;
+          })
+          .join("")}
       </table>
     </div>
-    `
-  };
+    `;
+  }
 
   _render(date) {
     this._element.innerHTML += `
     <div class="pokemon-cards" data-element="pokemon-cards">
-      ${ date.map(pokemon => {
-      return  `
+      ${date
+        .map(pokemon => {
+          return `
         <div
          class="card"
          data-id="${pokemon.id}"
          data-element-card> 
-          <img src="${pokemon.image}" alt="pokemon-img" data-element="pokemon-image">
+          <img src="${
+            pokemon.image
+          }" alt="pokemon-img" data-element="pokemon-image">
           <div class="description">
           <p>${pokemon.name}</p>
           <div class="some-feature">
-           ${pokemon.type.map(el => {
-             return `
+           ${pokemon.type
+             .map(el => {
+               return `
              <button data-element="${el.type.name}">
              ${el.type.name}
-             </button>`
-            }).join('')}
+             </button>`;
+             })
+             .join("")}
           </div>
         </div>
       </div>
-        `
-      }).join('')}
+        `;
+        })
+        .join("")}
       <button 
       class="load-pokemons"
        data-element="load-more">
@@ -143,7 +152,7 @@ export default class PokemonCatalog{
     </div>
     <div class="info-card" data-component="info-card">
     </div>
-    `
+    `;
     this._hidePreloader();
-  };
-};
+  }
+}
